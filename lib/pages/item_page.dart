@@ -9,25 +9,9 @@ class ItemPage extends StatelessWidget {
     final Item item = ModalRoute.of(context)!.settings.arguments as Item;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(item.name),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Nama: ${item.name}',
-              style: TextStyle(fontSize: 20),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Harga: Rp${item.price}',
-              style: TextStyle(fontSize: 20),
-            ),
-          ],
-        ),
+      appBar: AppBar(title: const Text('Shopping List')),
+      body: Center(
+        child: Text('${item.name} with ${item.price}'),
       ),
     );
   }

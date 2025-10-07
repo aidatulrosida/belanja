@@ -1,7 +1,9 @@
-import 'package:belanja/models/item.dart';
 import 'package:flutter/material.dart';
+import 'package:belanja/models/item.dart';
 
 class HomePage extends StatelessWidget {
+  HomePage({Key? key}) : super(key: key);
+
   final List<Item> items = [
     Item(name: 'Sugar', price: 5000),
     Item(name: 'Salt', price: 2000),
@@ -10,9 +12,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Shopping List'),
-      ),
+      appBar: AppBar(title: const Text('Shopping List')), 
       body: Container(
         margin: const EdgeInsets.all(8),
         child: ListView.builder(
@@ -20,27 +20,27 @@ class HomePage extends StatelessWidget {
           itemCount: items.length,
           itemBuilder: (context, index) {
             final item = items[index];
-            return Card(
-              child: InkWell(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    '/item',
-                    arguments: item,
-                  );
-                },
+            return InkWell(
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  '/item',
+                  arguments: item,
+                );
+              },
+              child: Card(
                 child: Container(
-                  margin: const EdgeInsets.all(8),
+                  margin: const EdgeInsets.symmetric(
+                    vertical: 8,
+                    horizontal: 16,
+                  ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Expanded(
-                        child: Text(item.name),
-                      ),
-                      Expanded(
-                        child: Text(
-                          item.price.toString(),
-                          textAlign: TextAlign.end,
-                        ),
+                      Text(item.name, style: const TextStyle(fontSize: 16)),
+                      Text(
+                        item.price.toString(),
+                        style: const TextStyle(fontSize: 16),
                       ),
                     ],
                   ),
